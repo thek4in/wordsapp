@@ -1,11 +1,9 @@
 'use client';
 
-import { WordLineType } from '@/types/types';
-import { useState, useRef, ChangeEvent } from 'react';
+import { useState, ChangeEvent } from 'react';
+import { Input } from '@/components/ui/input';
 
-import { Input } from './ui/input';
-
-function RowInput({ i }: { i: number }) {
+export default function Tile({ i }: { i: number }) {
   const [value, setValue] = useState('');
   const [isDisabled, setIsDisabled] = useState(false);
 
@@ -33,20 +31,5 @@ function RowInput({ i }: { i: number }) {
       onClick={handleFocus}
       disabled={isDisabled}
     />
-  );
-}
-
-export default function RowGuess({ data }: { data: WordLineType }) {
-  const rowLength = Object.keys(data).length;
-
-  return (
-    <div className="flex gap-3">
-      {Array.from({ length: rowLength }, (_, i) => i).map((i) => (
-        // <div key={i} className="h-20 w-20 border border-foreground flex justify-center items-center">
-        //   {JSON.stringify(data[i])}
-        // </div>
-        <RowInput i={i} key={i} />
-      ))}
-    </div>
   );
 }
